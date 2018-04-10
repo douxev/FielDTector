@@ -3,10 +3,10 @@
 #include "rgb_lcd.h" //using an LCD RGB backlight
 
 rgb_lcd lcd;
-
-const int colorR = 0;
-const int colorG = 0;
-const int colorB = 42;
+int a = 30;
+const int colorR = 255-a;
+const int colorG = 255-a;
+const int colorB = 255-a;
 bool bruit_conf = 0;
 void setup() 
 {
@@ -28,7 +28,7 @@ void loop()
     float pVolt0 = pinRead0 / 1024.0 * 5.0;
     int bruit = pVolt0;
     
-    lcd.setCursor(0, 1); 
+    lcd.setCursor(0, 1); //waiting for user to target gamma rays
     lcd.print("En Attente");
     delay(500);
     lcd.setCursor(0, 1); 
@@ -44,13 +44,13 @@ void loop()
     }
     
     lcd.clear();
-    int pinRead0 = analogRead(A0); // photodiode 
+    int pinRead0 = analogRead(A0); // detecting a real gamma ray source
     float pVolt0 = pinRead0 / 1024.0 * 5.0;
     int mesure = pVolt0 - bruit;
     
     lcd.noAutoscroll();
     lcd.setCursor(0,0);
-    lcd.print("Mesure obtenue :");
+    lcd.print("Mesure obtenue :"); //displaying the real value
     delay(1000);
     lcd.clear();
     lcd.setCursor(0,0);
@@ -59,5 +59,5 @@ void loop()
     lcd.print(bruit);
     lcd.setCursor(0, 1);
     lcd.print(mesure);
-    delay(10000);
+    delay(1000);
 }
