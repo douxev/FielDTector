@@ -41,17 +41,17 @@ void loop()
     lcd.print("En Attente...");
     delay(500);
     bruit_conf = 1;
+    lcd.noAutoscroll();
+    lcd.setCursor(0,0);
+    lcd.print("Mesure obtenue :"); //displaying the real value
+    delay(1000);
     }
     
     lcd.clear();
     int pinRead0 = analogRead(A0); // detecting a real gamma ray source
     float pVolt0 = pinRead0 / 1024.0 * 5.0;
     int mesure = pVolt0 - bruit;
-    
-    lcd.noAutoscroll();
-    lcd.setCursor(0,0);
-    lcd.print("Mesure obtenue :"); //displaying the real value
-    delay(1000);
+    lcd.noAutoscroll(); // Displaying real values
     lcd.clear();
     lcd.setCursor(0,0);
     lcd.print("Bruit :");
